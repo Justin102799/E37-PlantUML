@@ -1,0 +1,25 @@
+@startuml
+participant UI
+participant User
+participant MovieCatalog
+participant MovieSeats
+participant Payment 
+participant Gateway
+
+User -> UI : Users Access to the interface
+UI -> MovieCatalog : GET /movie // get all movie lists
+MovieCatalog -> UI : 200
+UI -> MovieCatalog : GET/movie/:id //get movies by id
+MovieCatalog -> UI : 200 //response from GET
+UI -> MovieSeats : GET/seat //get all availble seats
+MovieSeats -> UI : 200
+UI -> MovieSeats : GET/seat/:id //get seat by id
+UI -> User : confirm selected movie and seat
+
+==== payment ====
+UI -> Payment : POST /payment
+Payment -> Gateway : POST /payment
+Gateway -> Payment : 200
+Payment -> Gateway : PUT /payment:id
+Gateway -> Payment : 204 no content
+@enduml

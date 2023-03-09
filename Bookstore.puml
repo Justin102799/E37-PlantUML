@@ -1,0 +1,32 @@
+@startuml
+participant Users
+participant UiBook
+participant Catalog
+participant Cart
+participant Payment
+participant Gateway
+
+User -> UiBook : Login Page
+UiBook  -> Catalog : GET/Books // get book list
+Catalog -> UiBook : 200 //response from GET
+User -> Catalog : GET/book/:id // get book based n what book is cliked
+Catalog -> User : 200 //response from GET
+Cart -> Catalog : GET /product:id
+
+==== add to cart ====
+UiBook -> Cart : POST / catalog:id/item
+Cart -> Catalog : GET / book:id
+Catalog -> Cart : 200
+Cart -> UiBook : 201 created
+
+==== checkout ====
+Catalog -> Cart : GET / item books
+Payment -> Gateway : POST /Payment
+Gateway -> Payment : 200
+Payment -> Gateway : PUT /payment:id
+Gateway -> Payment : 204 no content
+
+
+
+
+@enduml
