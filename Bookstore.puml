@@ -6,12 +6,14 @@ participant Cart
 participant Payment
 participant Gateway
 
-User -> UiBook : Login Page
+User -> UiBook : GET /login/User:id
+UiBook -> User : 200 //response from GET
 UiBook  -> Catalog : GET/Books // get book list
 Catalog -> UiBook : 200 //response from GET
 User -> Catalog : GET/book/:id // get book based n what book is cliked
 Catalog -> User : 200 //response from GET
 Cart -> Catalog : GET /product:id
+Catalog -> Cart : 200 ok 
 
 ==== add to cart ====
 UiBook -> Cart : POST / catalog:id/item

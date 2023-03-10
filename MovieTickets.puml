@@ -6,7 +6,8 @@ participant MovieSeats
 participant Payment 
 participant Gateway
 
-User -> UI : Users Access to the interface
+User -> UI : GET /index/user:id
+UI -> User : 200 ok
 UI -> MovieCatalog : GET /movie // get all movie lists
 MovieCatalog -> UI : 200
 UI -> MovieCatalog : GET/movie/:id //get movies by id
