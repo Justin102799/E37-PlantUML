@@ -1,5 +1,5 @@
 @startuml
-participant User
+actor User #red
 participant UiBook
 participant Catalog
 participant Cart
